@@ -6,6 +6,14 @@ from models.base_model import BaseModel
 class User(BaseModel):
     """User class"""
 
+    def __init__(self, *args, **kwargs):
+        """Init"""
+        super().__init__(self, *args, **kwargs)
+        self.first_name = kwargs["first_name"]
+        self.last_name = kwargs["last_name"]
+        self.password = kwargs["password"]
+        self.email = kwargs["email"]
+
     email = ''
     password = ''
     first_name = ''

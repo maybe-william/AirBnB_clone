@@ -24,7 +24,7 @@ class FileStorage:
 
     def save(self):
         """Save all objects in the dict into a file"""
-        tempdict = {k : v.to_dict for k, v in class(self).__objects.items()}
+        tempdict = {k: v.to_dict for k, v in class(self).__objects.items()}
         json.dump(tempdict, class(self).__file_path)
 
     def reload(self):
@@ -33,4 +33,3 @@ class FileStorage:
         for k, v in tempdict.items():
             classn = k.split(".")[0]
             class(self).__objects[k] = eval(classn + "(**v)")
-
