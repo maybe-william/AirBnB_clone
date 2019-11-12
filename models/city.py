@@ -9,8 +9,10 @@ class City(BaseModel):
     def __init__(self, *args, **kwargs):
         """Init"""
         super().__init__(self, *args, **kwargs)
-        self.name = kwargs["name"]
-        self.state_id = kwargs["state_id"]
+        if "name" in kwargs.keys():
+            self.name = kwargs["name"]
+        if "state_id" in kwargs.keys():
+            self.state_id = kwargs["state_id"]
 
     state_id = ''
     name = ''

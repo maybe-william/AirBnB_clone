@@ -9,17 +9,28 @@ class Place(BaseModel):
     def __init__(self, *args, **kwargs):
         """Init"""
         super().__init__(self, *args, **kwargs)
-        self.name = kwargs["name"]
-        self.city_id = kwargs["city_id"]
-        self.user_id = kwargs["user_id"]
-        self.description = kwargs["description"]
-        self.number_rooms = kwargs["number_rooms"]
-        self.number_bathrooms = kwargs["number_bathrooms"]
-        self.max_guest = kwargs["max_guest"]
-        self.price_by_night = kwargs["price_by_night"]
-        self.latitude = kwargs["latitude"]
-        self.longitude = kwargs["longitude"]
-        self.amenity_ids = kwargs["amenity_ids"]
+        if "name" in kwargs.keys():
+            self.name = kwargs["name"]
+        if "city_id" in kwargs.keys():
+            self.city_id = kwargs["city_id"]
+        if "user_id" in kwargs.keys():
+            self.user_id = kwargs["user_id"]
+        if "description" in kwargs.keys():
+            self.description = kwargs["description"]
+        if "number_rooms" in kwargs.keys():
+            self.number_rooms = kwargs["number_rooms"]
+        if "number_bathrooms" in kwargs.keys():
+            self.number_bathrooms = kwargs["number_bathrooms"]
+        if "max_guest" in kwargs.keys():
+            self.max_guest = kwargs["max_guest"]
+        if "price_by_night" in kwargs.keys():
+            self.price_by_night = kwargs["price_by_night"]
+        if "latitude" in kwargs.keys():
+            self.latitude = kwargs["latitude"]
+        if "longitude" in kwargs.keys():
+            self.longitude = kwargs["longitude"]
+        if "amenity_ids" in kwargs.keys():
+            self.amenity_ids = kwargs["amenity_ids"]
 
     city_id = ''
     user_id = ''
