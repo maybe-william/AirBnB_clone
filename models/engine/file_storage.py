@@ -32,6 +32,13 @@ class FileStorage:
     def reload(self):
         """Reload all objects from a file into the dict"""
         from models.base_model import BaseModel
+        from models.user import User
+        from models.state import State
+        from models.city import City
+        from models.place import Place
+        from models.amenity import Amenity
+        from models.review import Review
+
         if os.path.exists(type(self).__file_path):
             with open(type(self).__file_path) as f:
                 tempdict = json.load(f)
