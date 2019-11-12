@@ -22,6 +22,7 @@ class BaseModel():
             to_dict - converts instance to dict
     """
     def __init__(self, *args, **kwargs):
+        """Init"""
         d = datetime.strptime
         if "id" not in kwargs:
             self.id = str(uuid.uuid4())
