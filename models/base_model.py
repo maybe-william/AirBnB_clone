@@ -37,7 +37,7 @@ class BaseModel():
             self.updated_at = d(kwargs["updated_at"], '%Y-%m-%dT%H:%M:%S.%f')
         if kwargs is None or len(kwargs.items()) == 0:
             storage.new(self)
- 
+
     def __str__(self):
         """ creates a string rep of the instance """
         s = self

@@ -7,7 +7,7 @@ import os
 class FileStorage:
     """Serialize into JSON file"""
 
-    __file_path = "./temp.json"
+    __file_path = "./file.json"
     __objects = {}
 
     def __init__(self):
