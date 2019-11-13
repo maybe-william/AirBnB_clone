@@ -33,7 +33,7 @@ class BaseModel():
         else:
             self.created_at = d(kwargs["created_at"], '%Y-%m-%dT%H:%M:%S.%f')
         if "updated_at" not in kwargs:
-            self.updated_at = datetime.now()
+            self.updated_at = self.created_at
         else:
             self.updated_at = d(kwargs["updated_at"], '%Y-%m-%dT%H:%M:%S.%f')
         if kwargs is None or len(kwargs.items()) == 0:
