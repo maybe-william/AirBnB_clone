@@ -7,7 +7,7 @@ import unittest
 
 class TestBaseModel(unittest.TestCase):
     """Test base model class"""
-    
+
     @classmethod
     def setUpClass(cls):
         cls.bm = BaseModel()
@@ -30,14 +30,14 @@ class TestBaseModel(unittest.TestCase):
         s.aii(s.bm.created_at, type(s.n))
 
         s.ae(s.bm.created_at.date(), s.n.date())
-        s.ae(s.bm.created_at.hour(), s.n.hour())
-        s.ae(s.bm.created_at.minute(), s.n.minute())
-        s.ae(s.bm.created_at.second(), s.n.second())
+        s.ae(s.bm.created_at.hour, s.n.hour)
+        s.ae(s.bm.created_at.minute, s.n.minute)
+        s.ae(s.bm.created_at.second, s.n.second)
         s.ae(s.bm2.created_at.date(), s.n2.date())
-        s.ae(s.bm2.created_at.hour(), s.n2.hour())
-        s.ae(s.bm2.created_at.minute(), s.n2.minute())
-        s.ae(s.bm2.created_at.second(), s.n2.second())
-        
+        s.ae(s.bm2.created_at.hour, s.n2.hour)
+        s.ae(s.bm2.created_at.minute, s.n2.minute)
+        s.ae(s.bm2.created_at.second, s.n2.second)
+
     def test_updated_at(s):
         s.bm.save()
         n = datetime.now()
@@ -47,23 +47,22 @@ class TestBaseModel(unittest.TestCase):
         s.aii(s.bm.updated_at, type(n))
 
         s.ae(s.bm.updated_at.date(), n.date())
-        s.ae(s.bm.updated_at.hour(), n.hour())
-        s.ae(s.bm.updated_at.minute(), n.minute())
-        s.ae(s.bm.updated_at.second(), n.second())
+        s.ae(s.bm.updated_at.hour, n.hour)
+        s.ae(s.bm.updated_at.minute, n.minute)
+        s.ae(s.bm.updated_at.second, n.second)
         s.ae(s.bm2.updated_at.date(), n2.date())
-        s.ae(s.bm2.updated_at.hour(), n2.hour())
-        s.ae(s.bm2.updated_at.minute(), n2.minute())
-        s.ae(s.bm2.updated_at.second(), n2.second())
+        s.ae(s.bm2.updated_at.hour, n2.hour)
+        s.ae(s.bm2.updated_at.minute, n2.minute)
+        s.ae(s.bm2.updated_at.second, n2.second)
 
         s.ae(s.bm.updated_at.date(), s.bm.created_at.date())
-        s.ae(s.bm.updated_at.hour(), s.bm.created_at.hour())
-        s.ae(s.bm.updated_at.minute(), s.bm.created_at.minute())
-        s.ae(s.bm.updated_at.second(), s.bm.created_at.second())
+        s.ae(s.bm.updated_at.hour, s.bm.created_at.hour)
+        s.ae(s.bm.updated_at.minute, s.bm.created_at.minute)
+        s.ae(s.bm.updated_at.second, s.bm.created_at.second)
         s.ae(s.bm2.updated_at.date(), s.bm2.created_at.date())
-        s.ae(s.bm2.updated_at.hour(), s.bm2.created_at.hour())
-        s.ae(s.bm2.updated_at.minute(), s.bm2.minute())
-        s.ae(s.bm2.updated_at.second(), s.bm2.second())
-
+        s.ae(s.bm2.updated_at.hour, s.bm2.created_at.hour)
+        s.ae(s.bm2.updated_at.minute, s.bm2.created_at.minute)
+        s.ae(s.bm2.updated_at.second, s.bm2.created_at.second)
 
     def test_to_dict(s):
         d = s.bm.to_dict().keys()
@@ -94,4 +93,3 @@ class TestBaseModel(unittest.TestCase):
 
     def test_make_from_dict(s):
         pass
-
