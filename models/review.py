@@ -9,9 +9,12 @@ class Review(BaseModel):
     def __init__(self, *args, **kwargs):
         """Init"""
         super().__init__(self, *args, **kwargs)
-        self.name = kwargs["name"]
-        self.place_id = kwargs["place_id"]
-        self.user_id = kwargs["user_id"]
+        if "name" in kwargs.keys():
+            self.name = kwargs["name"]
+        if "place_id" in kwargs.keys():
+            self.place_id = kwargs["place_id"]
+        if "user_id" in kwargs.keys():
+            self.user_id = kwargs["user_id"]
 
     place_id = ''
     user_id = ''
