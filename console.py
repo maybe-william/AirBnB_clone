@@ -88,7 +88,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 for i in my_model:
                     if i.id == argsDelim[1]:
-                        print(type(argsDelim[3]))
+                        print("type->", type(argsDelim[3]))
                         setattr(i, argsDelim[2], argsDelim[3])
                         break
                     else:
