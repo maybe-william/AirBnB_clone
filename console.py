@@ -33,13 +33,6 @@ class HBNBCommand(cmd.Cmd):
             "Place": Place,
             "Review": Review}
 
-    def __init__(self):
-        """Init"""
-        cmd.Cmd.__init__(self)
-        d = storage._FileStorage__objects
-        for k, v in d.items():
-            type(self).my_model.append(v)
-
     def do_create(self, args):
         """creates an instance"""
         if args in type(self).clss.keys():
@@ -92,17 +85,21 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, args):
         """prints all instances created"""
+        type(self).my_model = list()
+        templist = type(self).my_model
+        d = storage.all()
+        for k, v in d.items():
+            templist.append(v)
         if args == "":
-            templist = [str(i) for i in type(self).my_model]
             templist.reverse()
-            print(templist)
+            print([str(i) for i in templist])
         elif args in type(self).clss.keys():
-            templist = list()
-            for i in type(self).my_model:
+            temp2 = list()
+            for i in templist:
                 if type(i) == type(self).clss[args]:
-                    templist.append(str(i))
-            templist.reverse()
-            print(templist)
+                    temp2.append(str(i))
+            temp2.reverse()
+            print(temp2)
         else:
             print("** class doesn't exist **")
 
