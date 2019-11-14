@@ -92,14 +92,16 @@ class HBNBCommand(cmd.Cmd):
             templist.append(v)
         if args == "":
             templist.reverse()
-            print([str(i) for i in templist])
+            for i in templist:
+                print(str(i))
         elif args in type(self).clss.keys():
             temp2 = list()
             for i in templist:
                 if type(i) == type(self).clss[args]:
                     temp2.append(str(i))
             temp2.reverse()
-            print(temp2)
+            for i in temp2:
+                print(i)
         else:
             print("** class doesn't exist **")
 
