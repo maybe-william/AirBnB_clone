@@ -23,13 +23,6 @@ class HBNBCommand(cmd.Cmd):
             do_EOF: ctrl-d to quit
             emptyline: do nothing for empty line
     """
-    def __init__(self):
-        """Init"""
-        cmd.Cmd.__init__(self)
-        d = storage._FileStorage__objects
-        for k, v in d.items():
-            type(self).my_model.append(v)
-
     prompt = "(hbnb) "
     my_model = []
     clss = {"BaseModel": BaseModel,
@@ -39,6 +32,13 @@ class HBNBCommand(cmd.Cmd):
             "Amenity": Amenity,
             "Place": Place,
             "Review": Review}
+
+    def __init__(self):
+        """Init"""
+        cmd.Cmd.__init__(self)
+        d = storage._FileStorage__objects
+        for k, v in d.items():
+            type(self).my_model.append(v)
 
     def do_create(self, args):
         """creates an instance"""
