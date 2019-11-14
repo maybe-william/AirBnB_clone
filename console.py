@@ -77,7 +77,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, args):
         """adds attributes to instance"""
-        argsDelim = args.split()
+        # print(args)
+        argsDelim = args.split(" ", 3)
         if args and argsDelim[0] == "BaseModel":
             if len(argsDelim) < 2:
                 print("** instance id missing **")
@@ -88,8 +89,20 @@ class HBNBCommand(cmd.Cmd):
             else:
                 for i in my_model:
                     if i.id == argsDelim[1]:
-                        print("type->", type(argsDelim[3]))
-                        setattr(i, argsDelim[2], argsDelim[3])
+                        if '"' in argsDelim[3]:
+                            if '"' == argsDelim[3][-1]:
+                                value = argsDelim[3].split('"')[0]
+                            else:
+                                value = argsDelim[3].split('"')[1]
+                        elif '.' in argsDelim[3]:
+                            value = float(argsDelim[3])
+                        else:
+                            try:
+                                value = int(argsDelim[3])
+                            except Exception:
+                                value = argsDelim[3]
+                        # print("type->", type(value))
+                        setattr(i, argsDelim[2], value)
                         break
                     else:
                         print("** no instance found **")
