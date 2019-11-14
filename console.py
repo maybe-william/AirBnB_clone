@@ -103,6 +103,7 @@ class HBNBCommand(cmd.Cmd):
                                 value = argsDelim[3]
                         # print("type->", type(value))
                         setattr(i, argsDelim[2], value)
+                        i.save()
                         break
                     else:
                         print("** no instance found **")
