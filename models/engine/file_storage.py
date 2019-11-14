@@ -14,6 +14,13 @@ class FileStorage:
         """Init"""
         pass
 
+    def destroy(self, objid):
+        """Destroy the object in the json file"""
+        for k, v in type(self).__objects.items():
+            if k.split(".")[-1] == objid:
+                del type(self).__objects[k]
+                return
+
     def all(self):
         """Return all objects in dict form"""
         return type(self).__objects

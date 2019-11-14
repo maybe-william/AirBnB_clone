@@ -7,6 +7,7 @@ from models.state import State
 from models.review import Review
 from models.amenity import Amenity
 from models.place import Place
+from models import storage
 """
     This modual contains console class.
 """
@@ -22,6 +23,12 @@ class HBNBCommand(cmd.Cmd):
             do_EOF: ctrl-d to quit
             emptyline: do nothing for empty line
     """
+    def __init__(self):
+        cmd.Cmd.__init__(self)
+        d = storage._FileStorage__objects
+        for k, v in d.items():
+            type(self).my_model.append(v)
+
     prompt = "(hbnb) "
     my_model = []
     clss = {"BaseModel": BaseModel,
@@ -72,6 +79,7 @@ class HBNBCommand(cmd.Cmd):
                 for i in type(self).my_model:
                     if i.id == argsDelim[1]:
                         type(self).my_model.remove(i)
+                        storage.destroy(argsDelim[1])
                         break
                 else:
                     print("** no instance found **")
