@@ -44,6 +44,7 @@ class HBNBCommand(cmd.Cmd):
         """creates an instance"""
         if args in type(self).clss.keys():
             mod = type(self).clss[args]()
+            mod.save()
             type(self).my_model.append(mod)
             print(mod.id)
         elif args is "":
