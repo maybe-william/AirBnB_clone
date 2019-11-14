@@ -1,10 +1,16 @@
 #!/usr/bin/python3
 import cmd
 from models.base_model import BaseModel
+from models.user import User
+from models.city import City
+from models.state import State
+from models.review import Review
+from models.amenity import Amenity
+from models.place import Place
+from models import storage
 """
     This modual contains console class.
 """
-my_model = []
 
 
 class HBNBCommand(cmd.Cmd):
@@ -18,27 +24,36 @@ class HBNBCommand(cmd.Cmd):
             emptyline: do nothing for empty line
     """
     prompt = "(hbnb) "
+    my_model = []
+    clss = {"BaseModel": BaseModel,
+            "User": User,
+            "State": State,
+            "City": City,
+            "Amenity": Amenity,
+            "Place": Place,
+            "Review": Review}
 
     def do_create(self, args):
         """creates an instance"""
-        if args == "BaseModel":
-            mod = BaseModel()
-            my_model.append(mod)
+        if args in type(self).clss.keys():
+            mod = type(self).clss[args]()
+            mod.save()
+            type(self).my_model.append(mod)
             print(mod.id)
         elif args is "":
             print("** class name missing **")
         else:
             print("** class doesn't exist **")
-        # print("my_model--->", my_model)
+        # print("type(self).my_model--->", type(self).my_model)
 
     def do_show(self, args):
         """shows an instance"""
         argsDelim = args.split()
-        if args and argsDelim[0] == "BaseModel":
+        if args and argsDelim[0] in type(self).clss.keys():
             if len(argsDelim) < 2:
                 print("** instance id missing **")
             else:
-                for i in my_model:
+                for i in type(self).my_model:
                     if i.id == argsDelim[1]:
                         print(i)
                         break
@@ -52,13 +67,14 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, args):
         """destroys a created instance"""
         argsDelim = args.split()
-        if args and argsDelim[0] == "BaseModel":
+        if args and argsDelim[0] in type(self).clss.keys():
             if len(argsDelim) < 2:
                 print("** instance id missing **")
             else:
-                for i in my_model:
+                for i in type(self).my_model:
                     if i.id == argsDelim[1]:
-                        my_model.remove(i)
+                        type(self).my_model.remove(i)
+                        storage.destroy(argsDelim[1])
                         break
                 else:
                     print("** no instance found **")
@@ -69,8 +85,22 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, args):
         """prints all instances created"""
-        if args == "BaseModel" or args == "":
-            for i in my_model:
+        type(self).my_model = list()
+        templist = type(self).my_model
+        d = storage.all()
+        for k, v in d.items():
+            templist.append(v)
+        if args == "":
+            templist.reverse()
+            for i in templist:
+                print(str(i))
+        elif args in type(self).clss.keys():
+            temp2 = list()
+            for i in templist:
+                if type(i) == type(self).clss[args]:
+                    temp2.append(str(i))
+            temp2.reverse()
+            for i in temp2:
                 print(i)
         else:
             print("** class doesn't exist **")
@@ -79,7 +109,7 @@ class HBNBCommand(cmd.Cmd):
         """adds attributes to instance"""
         # print(args)
         argsDelim = args.split(" ", 3)
-        if args and argsDelim[0] == "BaseModel":
+        if args and argsDelim[0] in type(self).clss.keys():
             if len(argsDelim) < 2:
                 print("** instance id missing **")
             elif len(argsDelim) < 3:
@@ -87,7 +117,7 @@ class HBNBCommand(cmd.Cmd):
             elif len(argsDelim) < 4:
                 print("** value missing **")
             else:
-                for i in my_model:
+                for i in type(self).my_model:
                     if i.id == argsDelim[1]:
                         if '"' in argsDelim[3]:
                             if '"' == argsDelim[3][-1]:
@@ -114,10 +144,12 @@ class HBNBCommand(cmd.Cmd):
 
     def do_quit(self, args):
         """Quit command to exit the program"""
+        storage.save()
         exit()
 
     def do_EOF(self, args):
         """End Of File :)"""
+        storage.save()
         print()
         exit()
 
