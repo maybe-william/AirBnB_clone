@@ -144,10 +144,12 @@ class HBNBCommand(cmd.Cmd):
 
     def do_quit(self, args):
         """Quit command to exit the program"""
+        storage.save()
         exit()
 
     def do_EOF(self, args):
         """End Of File :)"""
+        storage.save()
         print()
         exit()
 
