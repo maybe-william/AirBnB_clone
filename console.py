@@ -82,8 +82,15 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, args):
         """prints all instances created"""
-        if args in type(self).clss.keys() or args == "":
+        if args == "":
             templist = [str(i) for i in type(self).my_model]
+            templist.reverse()
+            print(templist)
+        elif args in type(self).clss.keys():
+            templist = list()
+            for i in type(self).my_model:
+                if type(i) == type(self).clss[args]:
+                    templist.append(str(i))
             templist.reverse()
             print(templist)
         else:
