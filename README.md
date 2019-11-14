@@ -10,6 +10,6 @@ Created By: Christian Williams and William Dyrland-Marquis
     You can install and personally try our console by cloneing our repo and executing the console from the index directory.
 <h2>Built With:</h2>
     python 
-<h2>Struggles<h2>
-    console issues: at one point it didnt work from working completely
+<h2>Struggles</h2>
+    Console Issues: at one point it didnt work from working completely
     
