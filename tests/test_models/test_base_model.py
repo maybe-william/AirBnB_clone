@@ -10,6 +10,7 @@ class TestBaseModel(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
+        """Set up class"""
         cls.bm = BaseModel()
         cls.n = datetime.now()
         cls.bm2 = BaseModel()
@@ -22,11 +23,13 @@ class TestBaseModel(unittest.TestCase):
         cls.anii = cls.assertNotIsInstance
 
     def test_id(s):
+        """Test ids"""
         s.ane(s.bm.id, s.bm2.id)
         s.aii(s.bm.id, str)
         s.aii(s.bm2.id, str)
 
     def test_created_at(s):
+        """Test created_at"""
         s.aii(s.bm.created_at, type(s.n))
 
         s.ae(s.bm.created_at.date(), s.n.date())
@@ -39,6 +42,7 @@ class TestBaseModel(unittest.TestCase):
         s.ae(s.bm2.created_at.second, s.n2.second)
 
     def test_updated_at(s):
+        """Test updated_at"""
         s.bm.save()
         n = datetime.now()
         s.bm2.save()
@@ -65,6 +69,7 @@ class TestBaseModel(unittest.TestCase):
         s.ae(s.bm2.updated_at.second, s.bm2.created_at.second)
 
     def test_to_dict(s):
+        """Test to_dict"""
         d = s.bm.to_dict().keys()
         d2 = s.bm.to_dict()
         s.ai("id", d)
@@ -78,6 +83,7 @@ class TestBaseModel(unittest.TestCase):
         s.aii(d2["updated_at"], str)
 
     def test_str(s):
+        """Test __str__"""
         st = s.bm.__str__()
 
         s.ai("[BaseModel]", st)
@@ -86,10 +92,9 @@ class TestBaseModel(unittest.TestCase):
         s.ai("'updated_at'", st)
 
     def test_save(s):
+        """Test save"""
         pass
 
     def test_load(s):
-        pass
-
-    def test_make_from_dict(s):
+        """Test load"""
         pass
