@@ -11,3 +11,5 @@ Created By: Christian Williams and William Dyrland-Marquis
 <h2>Built With:</h2>
     python 
 <h2>Struggles<h2>
+    console issues: at one point it didnt work from working completely
+    
