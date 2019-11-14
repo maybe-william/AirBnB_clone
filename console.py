@@ -24,6 +24,7 @@ class HBNBCommand(cmd.Cmd):
             emptyline: do nothing for empty line
     """
     def __init__(self):
+        """Init"""
         cmd.Cmd.__init__(self)
         d = storage._FileStorage__objects
         for k, v in d.items():
