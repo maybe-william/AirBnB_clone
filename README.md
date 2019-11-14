@@ -10,3 +10,4 @@ Created By: Christian Williams and William Dyrland-Marquis
     You can install and personally try our console by cloneing our repo and executing the console from the index directory.
 <h2>Built With:</h2>
     python 
+<h2>Struggles<h2>
