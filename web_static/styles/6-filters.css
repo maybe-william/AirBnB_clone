@@ -9,11 +9,13 @@
 }
 .filters div {
   position: relative;
+  min-width: 200px;
   height: 100%;
   width: 25%;
 }
 
 .filters div .popover {
+  z-index: 100;
   visibility: hidden;
   position: relative; 
   top: 100%;
